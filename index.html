@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Anagha 🤍</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; overflow-x: hidden;
+  display: flex; justify-content: center; align-items: center;
+  padding: 24px 16px;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#fff0f5,#ffe0e9,#fff7f0);
+  color: #633747;
+}
+.card {
+  background: rgba(255,255,255,.88);
+  max-width: 520px; width: 100%; padding: 32px 24px;
+  border-radius: 25px; text-align: center;
+  box-shadow: 0 12px 40px #b85c7820;
+  border: 1px solid #ffffff;
+}
+.heart { font-size: 35px; animation: beat 1.2s infinite; }
+h1 { color: #bd5477; font-size: 30px; }
+.message { white-space: pre-line; line-height: 1.9; font-size: 17px; }
+h2 { font-size: 23px; line-height: 1.5; margin-top: 28px; }
+button {
+  border: 0; border-radius: 30px; padding: 13px 25px;
+  font-size: 16px; cursor: pointer; font-weight: bold;
+}
+#yes { background: #d95882; color: white; }
+#no { background: #f8e5ec; color: #8c4260; }
+.buttons {
+  display: flex; justify-content: center; align-items: center;
+  gap: 15px; flex-wrap: wrap; margin-top: 24px;
+}
+#no { position: relative; }
+#result { display:none; margin-top:25px; color:#bd5477; line-height:1.8; }
+.foot { font-size: 13px; color: #b47b8d; margin-top: 25px; }
+@keyframes beat {
+  50% { transform: scale(1.18); }
+}
+.floating {
+  position: fixed; bottom: -30px; pointer-events: none;
+  animation: rise 7s linear forwards; opacity: .7;
+}
+@keyframes rise {
+  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="heart">🤍</div>
+  <h1>Dear Anagha,</h1>
+  <p class="message"> Bas. tumhari khushi ke liye n to spend more time with you 
+
+</p>
+
+  <h2>Will you go on a movie date with me? 🎬❤️</h2>
+  <p>Just you and me, a good movie, and some memories. 🥹</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="sayYes()">YES ❤️</button>
+    <button id="no" onclick="moveNo()">NO 🥺</button>
+  </div>
+
+  <div id="result">
+    <div class="heart">💖</div>
+    <h2>Yayyyyy! 🥹❤️</h2>
+    <p>You just made me smile so much!</p>
+    <p>It's a date then! 🎬🍿🤍</p>
+    <p>Now we just have to decide the movie. 😉</p>
+  </div>
+  <div class="foot">Made with a little courage & lots of ❤️</div>
+</main>
+
+<script>
+function moveNo() {
+  const b = document.getElementById('no');
+  b.style.position = 'fixed';
+  const maxX = Math.max(0, window.innerWidth - b.offsetWidth - 20);
+  const maxY = Math.max(0, window.innerHeight - b.offsetHeight - 20);
+  b.style.left = (10 + Math.random() * maxX) + 'px';
+  b.style.top = (10 + Math.random() * maxY) + 'px';
+}
+
+function sayYes() {
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('no').style.display = 'none';
+  document.getElementById('yes').style.display = 'none';
+  document.getElementById('result').scrollIntoView({
+    behavior: 'smooth', block: 'center'
+  });
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => {
+      const h = document.createElement('span');
+      h.className = 'floating';
+      h.textContent = ['❤️','💕','💖','🤍','✨'][Math.floor(Math.random()*5)];
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.fontSize = (18+Math.random()*18)+'px';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 7000);
+    }, i * 100);
+  }
+}
+</script>
+</body>
+</html>
